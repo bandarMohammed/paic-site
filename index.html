@@ -1,409 +1,51 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PAIC | نادي البرمجة والذكاء الاصطناعي</title>
-<meta name="description" content="نادي البرمجة والذكاء الاصطناعي - جامعة الطائف">
-<link rel="stylesheet" href="style.css?v=4">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
 
-<!-- ═══════════════════ NAVBAR ═══════════════════ -->
-<header class="navbar">
-  <div class="nav-container">
-    <a href="#/home" class="brand">
-      <div class="brand-mark">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 25 30 L 10 50 L 25 70" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 75 30 L 90 50 L 75 70" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 60 25 L 40 75" stroke="var(--accent)" stroke-width="6" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="brand-text">
-        <span class="brand-name" data-i18n="brand.name">PAIC</span>
-        <span class="brand-sub" data-i18n="brand.sub">نادي البرمجة والذكاء الاصطناعي</span>
-      </div>
-    </a>
+<html>
+    <head>
+     <title>My Website</title>    
+    </head>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="#/home" class="nav-link" data-route="home" data-i18n="nav.home">الرئيسية</a>
-      <a href="#/offers" class="nav-link" data-route="offers" data-i18n="nav.offers">العروض</a>
-      <a href="#/about" class="nav-link" data-route="about" data-i18n="nav.about">عن النادي</a>
-      <a href="#/contact" class="nav-link" data-route="contact" data-i18n="nav.contact">تواصل</a>
-    </nav>
+    <body>
+        <a href="index.html">Home</a>    
+        <a href="sub/about.html">About</a>
+        <a href="contact.html">Contact</a>
+        
+        <h1>Welcome to My Website</h1> 
+        <h2>Hello, World!</h2>
+        <h3 style ="color:rgb(33, 150, 130)">انا بندر</h3>
 
-    <div class="nav-actions">
-      <button class="icon-btn" id="langBtn" title="Language">
-        <span id="langLabel">EN</span>
-      </button>
-      <button class="icon-btn" id="themeBtn" title="Theme">
-        <svg id="themeIcon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-      </button>
-      <button class="primary-btn" id="adminBtn" data-i18n="nav.admin">الإدارة</button>
-      <button class="icon-btn mobile-only" id="menuBtn">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- ═══════════════════ MAIN ═══════════════════ -->
-<main id="app">
-
-  <!-- ═══ HOME ═══ -->
-  <section class="page" data-page="home">
-    <div class="hero">
-      <div class="hero-bg">
-        <div class="orb orb-a"></div>
-        <div class="orb orb-b"></div>
-        <div class="grid-bg"></div>
-      </div>
-      <div class="hero-content">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          <span data-i18n="home.badge">جامعة الطائف · 2026</span>
-        </div>
-        <h1 class="hero-title">
-          <span data-i18n="home.title1">برمجة</span>
-          <span class="accent" data-i18n="home.title2">. ذكاء اصطناعي</span>
-          <br>
-          <span class="stroke" data-i18n="home.title3">. مستقبل.</span>
-        </h1>
-        <p class="hero-subtitle" data-i18n="home.subtitle">
-          نادي البرمجة والذكاء الاصطناعي بجامعة الطائف — مجتمع للمبدعين، يقدم لك خصومات حصرية في أفضل المطاعم والكوفيهات.
+        <p>Bandar html</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum similique qui, esse sit maiores nulla eaque nobis iste fuga dolores nisi provident at numquam odit ipsum commodi modi facilis eos!</p>
+        <p> 
+            <strong>My car:</strong> 
+            
+            <a href ="Images/my car.JPG">الكموره </a>  
+        
         </p>
-        <div class="hero-actions">
-          <a href="#/offers" class="primary-btn large" data-i18n="home.cta">استعرض العروض</a>
-          <a href="#/about" class="ghost-btn large" data-i18n="home.cta2">تعرف علينا</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-num" id="statOffers">0</div><div class="stat-label" data-i18n="home.stat1">شريك</div></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><div class="stat-num">20%</div><div class="stat-label" data-i18n="home.stat2">خصم للطلاب</div></div>
-          <div class="stat-divider"></div>
-          <div class="stat"><div class="stat-num">∞</div><div class="stat-label" data-i18n="home.stat3">إبداع</div></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="features-section">
-      <h2 class="section-title" data-i18n="home.featTitle">لماذا تنضم لنادينا؟</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎓</div>
-          <h3 data-i18n="home.feat1Title">خصومات حصرية</h3>
-          <p data-i18n="home.feat1Desc">احصل على خصومات خاصة في أفضل المطاعم والمقاهي حول الجامعة</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💻</div>
-          <h3 data-i18n="home.feat2Title">ورش وفعاليات</h3>
-          <p data-i18n="home.feat2Desc">ورش عمل دورية في البرمجة والذكاء الاصطناعي</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🤝</div>
-          <h3 data-i18n="home.feat3Title">مجتمع نشط</h3>
-          <p data-i18n="home.feat3Desc">انضم لشبكة من الطلاب الموهوبين والمبدعين</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <img width="300" src="Images/my car.JPG" alt="camery">
 
-  <!-- ═══ OFFERS ═══ -->
-  <section class="page" data-page="offers" hidden>
-    <div class="page-header">
-      <h2 class="section-title" data-i18n="offers.title">العروض والخصومات</h2>
-      <p class="section-sub" data-i18n="offers.subtitle">خصومات حصرية لطلاب جامعة الطائف عبر شركاء النادي</p>
-    </div>
+        <p>
+            <strong>My LinkedIn Profile & SQL Lab:</strong> 
 
-    <div class="toolbar">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" data-i18n-ph="offers.search" placeholder="ابحث عن مطعم أو كوفي...">
-      </div>
-      <div class="filters" id="filters">
-        <button class="filter-chip active" data-cat="" data-i18n="offers.all">الكل</button>
-        <button class="filter-chip" data-cat="restaurant" data-i18n="offers.restaurants">مطاعم</button>
-        <button class="filter-chip" data-cat="cafe" data-i18n="offers.cafes">كوفيهات</button>
-        <button class="filter-chip" data-cat="services" data-i18n="offers.services">خدمات</button>
-      </div>
-    </div>
+        </p>
+       
+             <a href="https://www.linkedin.com/in/bandar-al-talhi-b187a6333/"> 
 
-    <div class="offers-counter">
-      <span id="counterText" data-i18n="offers.counter">عدد الشركاء:</span>
-      <span class="counter-pill" id="counterNum">0</span>
-    </div>
+                <img width="40" src="Images/in.webp" alt="LinkedIn"> 
 
-    <div class="offers-grid" id="offersList"></div>
+            </a> 
+                  
 
-    <div class="empty-state" id="emptyState" hidden>
-      <div class="empty-icon">🔍</div>
-      <h3 data-i18n="offers.emptyTitle">لا توجد نتائج</h3>
-      <p data-i18n="offers.emptyDesc">جرّب كلمات بحث مختلفة أو غيّر الفلتر</p>
-    </div>
-  </section>
+             <a href="sub/LAB2.pdf"> 
 
-  <!-- ═══ ABOUT ═══ -->
-  <section class="page" data-page="about" hidden>
-    <div class="page-header">
-      <h2 class="section-title" data-i18n="about.title">عن النادي</h2>
-      <p class="section-sub" data-i18n="about.subtitle">نادي البرمجة والذكاء الاصطناعي - جامعة الطائف</p>
-    </div>
+                <img width="80" src="Images/sql.webp" alt="SQL Lab"> 
 
-    <div class="about-grid">
-      <div class="about-card large">
-        <div class="about-emoji">🎯</div>
-        <h3 data-i18n="about.missionTitle">مهمتنا</h3>
-        <p data-i18n="about.missionDesc">تمكين طلاب جامعة الطائف من إتقان مهارات البرمجة والذكاء الاصطناعي عبر ورش عمل، مشاريع، وفعاليات تجمع المبدعين تحت سقف واحد.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-emoji">💡</div>
-        <h3 data-i18n="about.visionTitle">رؤيتنا</h3>
-        <p data-i18n="about.visionDesc">أن نكون النادي الأول في المنطقة الذي يقود المبادرات التقنية الطلابية.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-emoji">⚡</div>
-        <h3 data-i18n="about.valueTitle">قيمنا</h3>
-        <p data-i18n="about.valueDesc">الإبداع، التعاون، التعلم المستمر، والمسؤولية الاجتماعية.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-emoji">🚀</div>
-        <h3 data-i18n="about.activitiesTitle">أنشطتنا</h3>
-        <p data-i18n="about.activitiesDesc">ورش عمل، هاكاثونات، محاضرات تقنية، ومسابقات برمجية.</p>
-      </div>
-    </div>
-  </section>
+            </a> 
 
-  <!-- ═══ CONTACT ═══ -->
-  <section class="page" data-page="contact" hidden>
-    <div class="page-header">
-      <h2 class="section-title" data-i18n="contact.title">تواصل معنا</h2>
-      <p class="section-sub" data-i18n="contact.subtitle">تابعنا على منصات التواصل الاجتماعي</p>
-    </div>
-
-    <div class="contact-grid">
-      <a href="https://www.linkedin.com/company/paic-taif-university/" target="_blank" class="contact-card">
-        <div class="contact-icon" style="background:#0A66C2">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
-        </div>
-        <div class="contact-info">
-          <h3>LinkedIn</h3>
-          <p>paic-taif-university</p>
-        </div>
-        <svg class="contact-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </a>
-
-      <a href="https://x.com/paictaifuni?s=21" target="_blank" class="contact-card">
-        <div class="contact-icon" style="background:#000">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </div>
-        <div class="contact-info">
-          <h3>X (Twitter)</h3>
-          <p>@paictaifuni</p>
-        </div>
-        <svg class="contact-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </a>
-
-      <a href="https://beacons.ai/paictaiuin" target="_blank" class="contact-card featured">
-        <div class="contact-icon" style="background:linear-gradient(135deg,var(--brand),var(--accent))">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="contact-info">
-          <h3 data-i18n="contact.allTitle">جميع حسابات النادي</h3>
-          <p>beacons.ai/paictaiuin</p>
-        </div>
-        <svg class="contact-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </a>
-    </div>
-  </section>
-
-</main>
-
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <div class="brand-mark small">
-        <svg viewBox="0 0 100 100"><path d="M 25 30 L 10 50 L 25 70" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M 75 30 L 90 50 L 75 70" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M 60 25 L 40 75" stroke="var(--accent)" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
-      </div>
-      <div>
-        <div class="footer-name" data-i18n="footer.name">نادي البرمجة والذكاء الاصطناعي</div>
-        <div class="footer-uni" data-i18n="footer.uni">جامعة الطائف</div>
-      </div>
-    </div>
-    <div class="footer-socials">
-      <a href="https://www.linkedin.com/company/paic-taif-university/" target="_blank" title="LinkedIn">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
-      </a>
-      <a href="https://x.com/paictaifuni?s=21" target="_blank" title="X">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://beacons.ai/paictaiuin" target="_blank" title="All links">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      </a>
-    </div>
-    <div class="footer-copy" data-i18n="footer.copy">© 2026 PAIC · جميع الحقوق محفوظة</div>
-  </div>
-</footer>
-
-<!-- ═══════════════════ MODALS ═══════════════════ -->
-
-<!-- Login Modal -->
-<div class="modal" id="loginModal">
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-content">
-    <button class="modal-close" data-close>×</button>
-    <div class="modal-icon">🔐</div>
-    <h3 data-i18n="modal.loginTitle">دخول الإدارة</h3>
-    <p data-i18n="modal.loginSub">أدخل كلمة مرور الإدارة للمتابعة</p>
-    <input type="password" id="loginPass" data-i18n-ph="modal.passPh" placeholder="كلمة المرور">
-    <div class="modal-actions">
-      <button class="primary-btn full" id="loginSubmit" data-i18n="modal.login">تسجيل الدخول</button>
-    </div>
-    <div class="modal-error" id="loginError"></div>
-  </div>
-</div>
-
-<!-- Add/Edit Offer Modal -->
-<div class="modal" id="offerModal">
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-content wide">
-    <button class="modal-close" data-close>×</button>
-    <h3 id="offerModalTitle" data-i18n="modal.addTitle">إضافة عرض جديد</h3>
-
-    <div class="form-grid">
-      <div class="form-row">
-        <label data-i18n="form.shopName">اسم المحل</label>
-        <input type="text" id="fName">
-      </div>
-      <div class="form-row">
-        <label data-i18n="form.category">التصنيف</label>
-        <select id="fCategory">
-          <option value="restaurant" data-i18n="offers.restaurants">مطعم</option>
-          <option value="cafe" data-i18n="offers.cafes">كوفي</option>
-          <option value="services" data-i18n="offers.services">خدمات</option>
-          <option value="_custom">＋ تصنيف جديد</option>
-        </select>
-      </div>
-      <div class="form-row full" id="customCategoryRow" hidden>
-        <label>اسم التصنيف الجديد</label>
-        <input type="text" id="fCustomCategory" placeholder="مثال: ترفيه، رياضة، تعليم...">
-      </div>
-      <div class="form-row full" id="serviceTypeRow" hidden>
-        <label>نوع الخدمة <span style="color:var(--accent);font-size:11px">★ يظهر كـ tag على الكارد</span></label>
-        <input type="text" id="fServiceType" placeholder="مثال: طباعة، صيانة، تصميم...">
-      </div>
-      <div class="form-row full">
-        <label data-i18n="form.discount">كابشن الخصم</label>
-        <textarea id="fDiscount" rows="2" data-i18n-ph="form.discountPh" placeholder="مثال: 20% لكل طالب جامعي بشرط إبراز البطاقة"></textarea>
-      </div>
-      <div class="form-row full">
-        <label data-i18n="form.mapQuery">اسم المكان للبحث في الخريطة <span style="color:var(--accent);font-size:11px">★ مهم للدقة</span></label>
-        <input type="text" id="fMapQuery" data-i18n-ph="form.mapQueryPh" placeholder="مثال: شاورما البلد الطائف">
-      </div>
-      <div class="form-row full">
-        <label data-i18n="form.mapUrl">رابط Google Maps (اختياري)</label>
-        <input type="text" id="fMap" placeholder="https://maps.app.goo.gl/...">
-      </div>
-      <div class="form-row">
-        <label>Lat (خط العرض)</label>
-        <input type="number" id="fLat" step="any" placeholder="21.4362">
-      </div>
-      <div class="form-row">
-        <label>Lng (خط الطول)</label>
-        <input type="number" id="fLng" step="any" placeholder="40.5124">
-      </div>
-      <div class="form-row full">
-        <button type="button" class="ghost-btn" id="extractCoordsBtn" style="width:100%">
-          📍 استخراج الإحداثيات من رابط Google Maps
-        </button>
-      </div>
-      <div class="form-row full">
-        <label data-i18n="form.logo">شعار المحل</label>
-        <div class="file-upload">
-          <input type="file" id="fLogoFile" accept="image/*">
-          <label for="fLogoFile" class="file-label">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-            <span data-i18n="form.uploadLogo">اختر صورة الشعار</span>
-          </label>
-          <img id="fLogoPreview" class="logo-preview" hidden>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-actions">
-      <button class="ghost-btn" data-close data-i18n="modal.cancel">إلغاء</button>
-      <button class="primary-btn" id="offerSubmit" data-i18n="modal.save">حفظ</button>
-    </div>
-  </div>
-</div>
-
-<!-- Map Modal -->
-<div class="modal" id="mapModal">
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-content wide">
-    <button class="modal-close" data-close>×</button>
-    <h3 id="mapModalTitle">الموقع</h3>
-    <div class="map-frame">
-      <iframe id="mapFrame" src="" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
-    <div class="modal-actions">
-      <a id="mapOpenLink" href="#" target="_blank" class="primary-btn full" data-i18n="modal.openMap">افتح في خرائط جوجل</a>
-    </div>
-  </div>
-</div>
-
-<!-- Change Password Modal -->
-<div class="modal" id="passModal">
-  <div class="modal-overlay" data-close></div>
-  <div class="modal-content">
-    <button class="modal-close" data-close>×</button>
-    <div class="modal-icon">🔑</div>
-    <h3 data-i18n="modal.changePassTitle">تغيير كلمة المرور</h3>
-    <p data-i18n="modal.changePassSub">للأمان، يجب إدخال كلمة المرور الحالية أولاً</p>
-    <input type="password" id="oldPass" data-i18n-ph="modal.oldPass" placeholder="كلمة المرور الحالية">
-    <input type="password" id="newPass" data-i18n-ph="modal.newPass" placeholder="كلمة المرور الجديدة">
-    <input type="password" id="confirmPass" data-i18n-ph="modal.confirmPass" placeholder="تأكيد كلمة المرور الجديدة">
-    <div class="modal-actions">
-      <button class="ghost-btn" data-close data-i18n="modal.cancel">إلغاء</button>
-      <button class="primary-btn" id="passSubmit" data-i18n="modal.update">تحديث</button>
-    </div>
-    <div class="modal-error" id="passError"></div>
-  </div>
-</div>
-
-<!-- Admin FAB -->
-<div class="admin-fab" id="adminFab" hidden>
-  <button class="fab-main" id="fabMain" title="Admin Actions">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-  </button>
-  <div class="fab-menu" id="fabMenu">
-    <button class="fab-item" id="addOfferBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-      <span data-i18n="fab.add">إضافة عرض</span>
-    </button>
-    <button class="fab-item" id="changePassBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <span data-i18n="fab.pass">كلمة المرور</span>
-    </button>
-    <button class="fab-item" id="logoutBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-      <span data-i18n="fab.logout">خروج</span>
-    </button>
-    <button class="fab-item" id="resetDataBtn">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-      <span>إعادة تعيين البيانات</span>
-    </button>
-  </div>
-</div>
-
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
-<script src="app.js?v=4"></script>
-</body>
-</html>
+            <p>
+                <a href ="form.html">Feedback</a>
+                
+            </p>
+    </body> 
+</html>         
