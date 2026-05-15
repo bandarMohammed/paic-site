@@ -49,7 +49,7 @@ To provide a centralized platform connecting students with local business offers
 * Google Maps Embed
 
 ---
-https://animated-kangaroo-89fac8.netlify.app/
+
 ## 📄 Note
 
 This project is developed for educational purposes.
