@@ -268,13 +268,88 @@ const DB_ERROR_MSG = {
   en: 'Database error',
 };
 
+const IMAGE_ERROR_MSG = {
+  ar: 'تعذر معالجة الصورة',
+  en: 'Failed to process image',
+};
+
+const IMAGE_TOO_LARGE_MSG = {
+  ar: 'حجم الصورة كبير جداً. اختر صورة أصغر أو قلل أبعادها',
+  en: 'Image is too large. Please choose a smaller image',
+};
+
+const MAX_LOGO_BYTES = 450 * 1024;
+
+function estimateDataUrlBytes(dataUrl) {
+  if (!dataUrl || typeof dataUrl !== 'string') return 0;
+  const commaIndex = dataUrl.indexOf(',');
+  if (commaIndex === -1) return 0;
+  const base64 = dataUrl.slice(commaIndex + 1);
+  const padding = base64.endsWith('==') ? 2 : base64.endsWith('=') ? 1 : 0;
+  return Math.max(0, Math.floor((base64.length * 3) / 4) - padding);
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('FileReader failed'));
+    reader.onload = ev => resolve(ev.target.result);
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('Image load failed'));
+    img.src = src;
+  });
+}
+
+async function compressImageToDataUrl(file) {
+  const original = await readFileAsDataUrl(file);
+  const img = await loadImage(original);
+
+  const maxDim = 640;
+  const scale = Math.min(1, maxDim / Math.max(img.width || 1, img.height || 1));
+  const w = Math.max(1, Math.round((img.width || 1) * scale));
+  const h = Math.max(1, Math.round((img.height || 1) * scale));
+
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, w, h);
+
+  let type = 'image/webp';
+  let out = canvas.toDataURL(type, 0.82);
+  if (!out.startsWith('data:image/webp')) {
+    type = 'image/jpeg';
+    out = canvas.toDataURL(type, 0.82);
+  }
+
+  let quality = 0.82;
+  while (estimateDataUrlBytes(out) > MAX_LOGO_BYTES && quality > 0.55) {
+    quality = Math.max(0.55, quality - 0.07);
+    out = canvas.toDataURL(type, quality);
+  }
+
+  if (estimateDataUrlBytes(out) > MAX_LOGO_BYTES) return null;
+  return out;
+}
+
 async function loadOffers() {
   if (!window.DB) return;
-  const offers = await window.DB.getAll();
-  State.offers = offers;
-  renderOffers();
-  const statEl = $('#statOffers');
-  if (statEl) animateNumber(statEl, State.offers.length);
+  try {
+    const offers = await window.DB.getAll();
+    State.offers = offers;
+    renderOffers();
+    const statEl = $('#statOffers');
+    if (statEl) animateNumber(statEl, State.offers.length);
+  } catch (err) {
+    toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
+  }
 }
 
 let realtimeUnsubscribe = null;
@@ -470,70 +545,86 @@ window.deleteOffer = async function(id) {
 };
 
 async function submitOffer() {
-  const name = $('#fName').value.trim();
-  const rawCat = $('#fCategory').value;
-  const category = rawCat === '_custom' ? $('#fCustomCategory').value.trim() : rawCat;
-  const discount = $('#fDiscount').value.trim();
-  const mapUrlInput = $('#fMap').value.trim();
-  const mapQuery = $('#fMapQuery').value.trim();
-  const lat = parseFloat($('#fLat').value) || null;
-  const lng = parseFloat($('#fLng').value) || null;
-  const logoSrc = $('#fLogoPreview').hidden ? null : $('#fLogoPreview').src;
+  if (submitOffer._busy) return;
+  submitOffer._busy = true;
+  const submitBtn = $('#offerSubmit');
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
+    const name = $('#fName').value.trim();
+    const rawCat = $('#fCategory').value;
+    const category = rawCat === '_custom' ? $('#fCustomCategory').value.trim() : rawCat;
+    const discount = $('#fDiscount').value.trim();
+    const mapUrlInput = $('#fMap').value.trim();
+    const mapQuery = $('#fMapQuery').value.trim();
+    const lat = parseFloat($('#fLat').value) || null;
+    const lng = parseFloat($('#fLng').value) || null;
+    const logoSrc = $('#fLogoPreview').hidden ? null : $('#fLogoPreview').src;
 
   // Require name, discount, category, and AT LEAST one of mapQuery/mapUrl
-  if (!name || !discount || !category || (!mapQuery && !mapUrlInput)) {
-    toast(t('err.fillAll'));
-    return;
-  }
+    if (!name || !discount || !category || (!mapQuery && !mapUrlInput)) {
+      toast(t('err.fillAll'));
+      return;
+    }
 
-  if (!window.DB) return;
+    if (!window.DB) return;
 
-  const mapUrl = mapUrlInput || `https://www.google.com/maps/search/${encodeURIComponent(mapQuery)}`;
+    const mapUrl = mapUrlInput || `https://www.google.com/maps/search/${encodeURIComponent(mapQuery)}`;
+    if (logoSrc && estimateDataUrlBytes(logoSrc) > MAX_LOGO_BYTES) {
+      toast(IMAGE_TOO_LARGE_MSG[State.lang] || IMAGE_TOO_LARGE_MSG.en);
+      return;
+    }
 
-  if (State.editingId) {
-    const updates = {
-      category,
-      map_url: mapUrl || null,
-      lat,
-      lng,
-      logo: logoSrc || null,
-    };
-    if (State.lang === 'ar') {
-      updates.name_ar = name;
-      updates.discount_ar = discount;
+    if (State.editingId) {
+      const updates = {
+        category,
+        map_url: mapUrl || null,
+        lat,
+        lng,
+        logo: logoSrc || null,
+      };
+      if (State.lang === 'ar') {
+        updates.name_ar = name;
+        updates.discount_ar = discount;
+      } else {
+        updates.name_en = name;
+        updates.discount_en = discount;
+      }
+      const updated = await window.DB.update(State.editingId, updates);
+      if (!updated) {
+        toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
+        return;
+      }
+      await loadOffers();
+      toast(t('toast.updated'));
     } else {
-      updates.name_en = name;
-      updates.discount_en = discount;
+      const inserted = await window.DB.insert({
+        name_ar: name,
+        name_en: name,
+        category,
+        discount_ar: discount,
+        discount_en: discount,
+        map_url: mapUrl || null,
+        lat,
+        lng,
+        logo: logoSrc || null,
+      });
+      if (!inserted) {
+        toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
+        return;
+      }
+      await loadOffers();
+      toast(t('toast.added'));
     }
-    const updated = await window.DB.update(State.editingId, updates);
-    if (!updated) {
-      toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
-      return;
-    }
-    await loadOffers();
-    toast(t('toast.updated'));
-  } else {
-    const inserted = await window.DB.insert({
-      name_ar: name,
-      name_en: name,
-      category,
-      discount_ar: discount,
-      discount_en: discount,
-      map_url: mapUrl || null,
-      lat,
-      lng,
-      logo: logoSrc || null,
-    });
-    if (!inserted) {
-      toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
-      return;
-    }
-    await loadOffers();
-    toast(t('toast.added'));
-  }
 
-  closeModal('offerModal');
-  State.editingId = null;
+    closeModal('offerModal');
+    State.editingId = null;
+  } catch (err) {
+    toast(DB_ERROR_MSG[State.lang] || DB_ERROR_MSG.en);
+  } finally {
+    submitOffer._busy = false;
+    if (submitBtn) submitBtn.disabled = false;
+  }
 }
 
 function openAddOffer() {
@@ -735,15 +826,24 @@ async function init() {
   });
 
   // File upload preview
-  $('#fLogoFile').addEventListener('change', e => {
+  $('#fLogoFile').addEventListener('change', async e => {
     const file = e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      $('#fLogoPreview').src = ev.target.result;
+    try {
+      const compressed = await compressImageToDataUrl(file);
+      if (!compressed) {
+        $('#fLogoPreview').hidden = true;
+        $('#fLogoPreview').src = '';
+        toast(IMAGE_TOO_LARGE_MSG[State.lang] || IMAGE_TOO_LARGE_MSG.en);
+        return;
+      }
+      $('#fLogoPreview').src = compressed;
       $('#fLogoPreview').hidden = false;
-    };
-    reader.readAsDataURL(file);
+    } catch (err) {
+      $('#fLogoPreview').hidden = true;
+      $('#fLogoPreview').src = '';
+      toast(IMAGE_ERROR_MSG[State.lang] || IMAGE_ERROR_MSG.en);
+    }
   });
 
   // Modal close
